@@ -237,11 +237,14 @@ Confluence Cloud 문서(특정 **폴더** 하위)를 앱에서 바로 열고 편
 1. [최신 릴리스](https://github.com/wbslog/jm-markdowneditor-release/releases/latest) 에서 **`jm-mdv.app.zip`** 을 내려받습니다.
    (고정 주소: `https://github.com/wbslog/jm-markdowneditor-release/releases/latest/download/jm-mdv.app.zip`)
 2. 압축을 풀고 `jm-mdv.app` 을 **응용 프로그램** 폴더로 옮깁니다.
-3. **처음 한 번은 우클릭 → 열기 → 열기** 로 실행합니다. 서명·공증이 없는 앱이라 나오는 정상 경고이며 이후는 더블클릭으로 됩니다.
-   - 그래도 "손상됨" / `developer cannot be verified` 가 나오면 터미널에서:
+3. **처음 실행 시 "손상되었기 때문에 열 수 없습니다 → 휴지통으로 이동" 창이 뜹니다.** Apple 공증을 받지 않은 앱을
+   인터넷에서 받으면 나오는 정상 동작이며(앱은 멀쩡함), 아래 둘 중 하나로 한 번만 풀면 이후는 더블클릭으로 됩니다.
+   - 터미널(`⌘+Space` → 터미널)에 붙여넣고 Enter:
      ```bash
-     xattr -dr com.apple.quarantine /Applications/jm-mdv.app
+     xattr -dr com.apple.quarantine /Applications/jm-mdv.app && open /Applications/jm-mdv.app
      ```
+   - 또는 창에서 **취소** → **시스템 설정 → 개인정보 보호 및 보안** 맨 아래 "jm-mdv 차단됨" 옆 **그래도 열기**.
+   - macOS 14 이하에서는 **우클릭 → 열기 → 열기** 로도 통과됩니다(macOS 15 부터는 이 우회가 없어짐).
 4. 빌드는 Apple Silicon(arm64) 기준입니다. Intel Mac 은 Rosetta 로 실행되지 않으므로 필요하면 요청해 주세요.
 
 #### 🔄 macOS 업데이트 방법
