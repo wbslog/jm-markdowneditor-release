@@ -23,13 +23,25 @@ All rights reserved.
    - 유료 제품, 유료 서비스, 구독 상품 등에 포함시켜 제공하는 행위
    - 소프트웨어의 저작권 표시, 개발자 정보, 본 라이선스 고지의 제거·변경
 
-3. 보증의 부인
+3. 역분석(리버스 엔지니어링) 금지
+   - 배포된 실행 파일(exe, app 등 빌드 결과물)에 대한 리버스 엔지니어링,
+     디컴파일, 디스어셈블, 압축·난독화 해제, 내부 구조·알고리즘 추출 등
+     어떠한 형태의 역분석도 금지됩니다. (관련 법령이 명시적으로 허용하는
+     범위를 제외)
+   - 역분석으로 얻은 결과물(복원된 소스, 파생물, 변형본)을 작성·사용·배포
+     하는 행위, 특히 이를 재배포하거나 다른 제품에 포함시키는 행위는
+     본 라이선스의 중대한 위반입니다.
+   - 위반 시 본 라이선스는 즉시 자동 종료되며, 위반자는 소프트웨어의
+     모든 복제본을 삭제해야 하고, 저작권법 등 관련 법령에 따른 민·형사상
+     책임(손해배상, 배포 금지 청구 등)을 집니다.
+
+4. 보증의 부인
    - 본 소프트웨어는 "있는 그대로(AS IS)" 제공되며, 상품성이나 특정 목적
      적합성을 포함한 어떠한 명시적·묵시적 보증도 하지 않습니다.
    - 소프트웨어의 사용으로 발생하는 어떠한 손해에 대해서도 저작권자는
      책임을 지지 않습니다.
 
-4. 기타
+5. 기타
    - 본 라이선스에서 명시적으로 허용하지 않은 모든 권리는 저작권자에게
      있습니다.
    - 위 조건을 위반하는 경우 본 라이선스는 자동으로 종료됩니다.
@@ -60,14 +72,29 @@ the "Software") is provided free of charge under the following terms.
    - Remove or alter the copyright notice, developer information, or this
      license notice.
 
-3. NO WARRANTY
+3. NO REVERSE ENGINEERING
+   - You may not reverse engineer, decompile, disassemble, unpack,
+     de-obfuscate, or otherwise attempt to derive the source code, internal
+     structure, or algorithms of the distributed binaries (exe, app, and any
+     other build output), except to the extent expressly permitted by
+     applicable law.
+   - Creating, using, or distributing anything obtained through such
+     reverse engineering (recovered source, derivative works, modified
+     builds) - in particular redistributing it or bundling it into another
+     product - is a material breach of this license.
+   - On breach this license terminates immediately and automatically; you
+     must destroy all copies of the Software and you are liable under
+     copyright and other applicable laws (damages, injunctive relief, and
+     any criminal liability).
+
+4. NO WARRANTY
    - The Software is provided "AS IS", without warranty of any kind,
      express or implied, including but not limited to merchantability or
      fitness for a particular purpose.
    - In no event shall the copyright holder be liable for any damages
      arising from the use of the Software.
 
-4. Miscellaneous
+5. Miscellaneous
    - All rights not expressly granted here are reserved by the copyright
      holder.
    - This license terminates automatically if you violate its terms.
