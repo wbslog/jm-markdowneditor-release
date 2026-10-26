@@ -89,7 +89,7 @@ GitHub Releases에서 새 버전을 자동 확인합니다 (v1.30.0부터. 소�
 
 > **릴리스 올릴 때 규칙** (자동 업데이트가 인식하려면):
 > - 태그: `v1.7.0` 형식 (`v` + 버전)
-> - 파일명: Windows는 `...exe`, macOS는 이름에 `mac`이 들어간 `...zip` (예: `jm-mdv-1.7.0.exe`, `jm-mdv-1.7.0-mac-arm64.zip`)
+> - 파일명: Windows는 `jm-mdv.exe`, macOS는 `jm-mdv.app.zip` (v1.26.0 부터 버전 없이 고정; macOS 는 소스 저장소에 `v<버전>` 태그를 푸시하면 Actions 가 자동 업로드)
 > - **릴리스 설명(body)** 에 적은 내용이 "새로운 기능" 안내창에 그대로 표시됩니다 (마크다운 지원)
 
 ## 💾 자동 백업
@@ -229,38 +229,25 @@ Confluence Cloud 문서(특정 **폴더** 하위)를 앱에서 바로 열고 편
 3. **"Windows의 PC 보호"(SmartScreen)** 경고가 뜨면 → **추가 정보** → **실행**을 누릅니다.
    (서명이 없는 앱이라 나오는 정상 경고이며, 최초 1회만 확인하면 됩니다.)
 
-### 🍎 macOS — 원클릭 설치 · 업데이트 (누구나 가능, 권장)
+### 🍎 macOS — 릴리스에서 내려받아 설치
 
-> ⚠️ **릴리스에는 macOS용 파일이 없습니다.** 맥은 직접 빌드해야 하지만,
-> 아래 **한 줄**만 붙여넣으면 다운로드부터 빌드·설치·실행까지 전부 자동으로 됩니다.
-> **IT 지식이 없어도 됩니다** — 복사, 붙여넣기, Enter가 전부입니다.
+> 2026-10-26 부터 **릴리스마다 `jm-mdv.app.zip` 이 자동으로 함께 올라갑니다** (GitHub Actions 의 macOS 러너가
+> `build_mac.sh` 로 빌드). 예전의 "터미널 한 줄 설치"는 소스 저장소 비공개 전환으로 더 이상 동작하지 않습니다.
 
-1. **터미널 열기**: 키보드에서 `⌘(Command) + Space` → `터미널` 입력 → Enter
-2. 아래 한 줄을 **복사해서 터미널에 붙여넣고 Enter**:
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/wbslog/jm-markdowneditor/main/easy_mac_setup.sh | bash
-   ```
-3. 끝! 몇 분 뒤 앱이 자동으로 실행되고, **응용 프로그램(Launchpad)에 `jm-mdv`** 가 설치됩니다.
+1. [최신 릴리스](https://github.com/wbslog/jm-markdowneditor-release/releases/latest) 에서 **`jm-mdv.app.zip`** 을 내려받습니다.
+   (고정 주소: `https://github.com/wbslog/jm-markdowneditor-release/releases/latest/download/jm-mdv.app.zip`)
+2. 압축을 풀고 `jm-mdv.app` 을 **응용 프로그램** 폴더로 옮깁니다.
+3. **처음 한 번은 우클릭 → 열기 → 열기** 로 실행합니다. 서명·공증이 없는 앱이라 나오는 정상 경고이며 이후는 더블클릭으로 됩니다.
+   - 그래도 "손상됨" / `developer cannot be verified` 가 나오면 터미널에서:
+     ```bash
+     xattr -dr com.apple.quarantine /Applications/jm-mdv.app
+     ```
+4. 빌드는 Apple Silicon(arm64) 기준입니다. Intel Mac 은 Rosetta 로 실행되지 않으므로 필요하면 요청해 주세요.
 
-- **최초 1회**, "명령어 도구(Command Line Tools) 설치" 창이 뜰 수 있습니다 → **[설치]** 클릭 후
-  설치가 끝나면 **위의 한 줄을 한 번 더** 실행해 주세요. (Apple 공식 도구입니다)
-- **업데이트도 똑같습니다** — 새 버전이 나오면 위 한 줄을 다시 실행하면 최신 버전으로 교체됩니다.
-- 스크립트가 하는 일: 소스 다운로드(`~/jm-mdv-src`) → 가상환경에 패키지 설치(시스템은 건드리지 않음)
-  → 앱 빌드 → `응용 프로그램` 폴더에 복사 → 보안 격리 해제(`xattr`) → 실행
+#### 🔄 macOS 업데이트 방법
 
-> **실행이 안 될 때** — 터미널에서 직접 실행하면 실제 오류가 표시됩니다:
-> ```bash
-> /Applications/jm-mdv.app/Contents/MacOS/jm-mdv
-> ```
-> - `developer cannot be verified` / "손상됨" → `xattr -cr /Applications/jm-mdv.app` 후 재시도
-> - 그 외 오류는 위 한 줄 명령을 다시 실행하면 처음부터 깨끗하게 다시 빌드합니다.
-
-#### 🔄 macOS 업데이트 방법 (앱 내 안내)
-
-macOS는 코드 서명/공증이 없어 **자동 교체를 하지 않습니다.** 새 버전이 있으면 앱의 **🚀 업데이트** 창에 아래 안내와 버튼이 표시됩니다.
-
-- **간단(권장)**: 터미널에 위의 **원클릭 한 줄**을 다시 붙여넣기 → 자동으로 최신 버전 재빌드·교체
-- **수동(개발자)**: `🛠 빌드 가이드(README) 열기` 버튼 → `git pull` → 가상환경/패키지 → `pyinstaller` 빌드
+macOS 는 코드 서명/공증이 없어 **앱이 스스로 교체하지 않습니다.** 새 버전이 있으면 앱의 **🚀 업데이트** 창에 안내가 뜨며,
+위 1~3 을 다시 하면 됩니다(기존 `jm-mdv.app` 을 덮어쓰기). 설정·세션 파일은 홈 폴더에 있어 그대로 유지됩니다.
 
 > Windows는 종전대로 **⬇️ 다운로드 및 재시작** 으로 자동 업데이트됩니다.
 
